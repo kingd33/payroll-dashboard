@@ -94,3 +94,34 @@ If you want the dashboard buttons (like bypassing an error or approving a diff) 
 1. Add a `resumePipeline(regionCode, gpcId)` method to your `useBackendData` hook.
 2. Export it from the `PipelineContext` return value.
 3. Call `resumePipeline` globally from the "Approve Fix" buttons inside `<DiffView />`.
+
+## Directory Structure
+Here is a breakdown of the repository to help you navigate the codebase:
+
+```text
+src/
+├── App.tsx                     # Main layout shell (Grid positioning for all components)
+├── main.tsx                    # React entrypoint; wraps App in <PipelineProvider>
+├── types.ts                    # Crucial! Defines all Typescript interfaces (RegionData, Logs, Phases, etc.)
+├── utils.ts                    # Utility helper functions 
+│
+├── context/
+│   └── PipelineContext.tsx     # The architectural brain. Merges backend data into a global context API 
+│                               # and pre-calculates expensive dashboard metrics (Completion %, Issue Regions).
+│
+├── hooks/
+│   └── useSimulation.ts        # The Virtual Engine powering the demo mode. It fetches `public/demo-schedule.json` 
+│                               # and acts as a fake backend. Swap this out for your real API hook.
+│
+├── components/                 # Pure display components that consume the PipelineContext
+│   ├── Header.tsx              # Top navigation bar & Virtual Clock display
+│   ├── GlobalProgressBar.tsx   # Top overall cycle completion progress bar
+│   ├── GlobalIssuesPanel.tsx   # Top left ticket count & active issues ticker
+│   ├── LiveLogPanel.tsx        # Bottom left real-time orchestrator log output
+│   ├── CountryProcessList.tsx  # Right Sidebar listing 21 global regions & their individual statuses
+│   ├── ConcurrentLanes.tsx     # THE CORE VISUAL: The massive middle grid rendering Phases & GPCs
+│   │
+│   ├── AgentStatusIcon.tsx     # Renders the pulsing/beating icons depending on AgentState (Error, Auto-healing)
+│   ├── GpcDetailsModal.tsx     # Slide-over modal showing details when you click a Region's active phase node
+│   └── DiffView.tsx            # Fullscreen modal displaying the "Before vs After" JSON payload difference
+```
