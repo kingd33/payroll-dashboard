@@ -191,6 +191,7 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
                               
                               <motion.button 
                                  onClick={() => {
+                                   if (!isActive && !isPast) return; // Prevent clicking future nodes
                                    if (col.type === 'gpc') {
                                      onGpcClick?.(col.id, region.countryCode);
                                    } else {
@@ -210,13 +211,13 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
                                      }
                                    }
                                  }}
-                                 whileHover={{ scale: 1.1 }}
-                                 whileTap={{ scale: 0.95 }}
+                                 whileHover={{ scale: (isActive || isPast) ? 1.1 : 1 }}
+                                 whileTap={{ scale: (isActive || isPast) ? 0.95 : 1 }}
                                  className={`
                                     relative z-10 flex items-center justify-center group/btn
-                                    ${isActive ? 'cursor-pointer' : ''}
-                                    cursor-pointer
+                                    ${(isActive || isPast) ? 'cursor-pointer' : 'cursor-not-allowed opacity-40'}
                                  `}
+                                 disabled={!isActive && !isPast}
                               >
                                  <AgentStatusIcon 
                                    state={stateToRender as AgentState} 
