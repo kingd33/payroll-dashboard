@@ -45,8 +45,8 @@ export const GPC_DEFINITIONS: GPC[] = [
 export const PIPELINE_PHASES: Phase[] = [
   { 
     id: 'PHASE0', 
-    name: 'Precondition Data Transformation', 
-    shortName: 'Precondition',
+    name: 'Data Standardization', 
+    shortName: 'Data Prep',
     gpcs: [{ id: 'PRE', name: 'Airflow/Python ETL', phaseId: 'PHASE0' }] 
   },
   { 

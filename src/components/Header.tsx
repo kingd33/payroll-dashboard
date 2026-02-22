@@ -16,9 +16,9 @@ export const Header: React.FC = () => {
     <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 z-20 shadow-sm shrink-0">
       <div className="flex items-center gap-4">
         <div className="size-7 rounded-sm bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white shadow-lg">
-          <span className="text-[12px] font-bold tracking-tighter">DP</span>
+          <span className="text-[12px] font-bold tracking-tighter">PCC</span>
         </div>
-        <h1 className="text-lg font-medium text-slate-900 tracking-wide">Data Processing Dashboard</h1>
+        <h1 className="text-lg font-medium text-slate-900 tracking-wide">Payroll Command Center</h1>
       </div>
       
       <div className="flex items-center gap-6 text-slate-500">
