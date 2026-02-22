@@ -1,0 +1,23 @@
+[
+  { "id": "1", "countryCode": "US", "name": "United States", "scheduleDropTime": "0", "state": "SCHEDULED" },
+  { "id": "2", "countryCode": "UK", "name": "United Kingdom", "scheduleDropTime": "12", "state": "SCHEDULED" },
+  { "id": "3", "countryCode": "DE", "name": "Germany", "scheduleDropTime": "24", "state": "SCHEDULED" },
+  { "id": "4", "countryCode": "FR", "name": "France", "scheduleDropTime": "36", "state": "SCHEDULED" },
+  { "id": "5", "countryCode": "JP", "name": "Japan", "scheduleDropTime": "48", "state": "SCHEDULED" },
+  { "id": "6", "countryCode": "AU", "name": "Australia", "scheduleDropTime": "60", "state": "SCHEDULED" },
+  { "id": "7", "countryCode": "CA", "name": "Canada", "scheduleDropTime": "72", "state": "SCHEDULED" },
+  { "id": "8", "countryCode": "IE", "name": "Ireland", "scheduleDropTime": "8", "state": "SCHEDULED" },
+  { "id": "9", "countryCode": "IN", "name": "India", "scheduleDropTime": "18", "state": "SCHEDULED" },
+  { "id": "10", "countryCode": "BR", "name": "Brazil", "scheduleDropTime": "30", "state": "SCHEDULED" },
+  { "id": "11", "countryCode": "MX", "name": "Mexico", "scheduleDropTime": "42", "state": "SCHEDULED" },
+  { "id": "12", "countryCode": "ZA", "name": "South Africa", "scheduleDropTime": "54", "state": "SCHEDULED" },
+  { "id": "13", "countryCode": "SG", "name": "Singapore", "scheduleDropTime": "66", "state": "SCHEDULED" },
+  { "id": "14", "countryCode": "CH", "name": "Switzerland", "scheduleDropTime": "4", "state": "SCHEDULED" },
+  { "id": "15", "countryCode": "NL", "name": "Netherlands", "scheduleDropTime": "16", "state": "SCHEDULED" },
+  { "id": "16", "countryCode": "SE", "name": "Sweden", "scheduleDropTime": "28", "state": "SCHEDULED" },
+  { "id": "17", "countryCode": "NO", "name": "Norway", "scheduleDropTime": "40", "state": "SCHEDULED" },
+  { "id": "18", "countryCode": "AE", "name": "UAE", "scheduleDropTime": "52", "state": "SCHEDULED" },
+  { "id": "19", "countryCode": "NZ", "name": "New Zealand", "scheduleDropTime": "64", "state": "SCHEDULED" },
+  { "id": "20", "countryCode": "KR", "name": "South Korea", "scheduleDropTime": "2", "state": "SCHEDULED" },
+  { "id": "21", "countryCode": "IT", "name": "Italy", "scheduleDropTime": "14", "state": "SCHEDULED" }
+]
