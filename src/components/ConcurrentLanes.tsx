@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { type RegionData, type AgentState, PIPELINE_PHASES, getSortedRegions } from '../types';
 import { AgentStatusIcon } from './AgentStatusIcon';
-import { motion } from 'framer-motion';
-import { Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Clock, ChevronUp, ChevronDown } from 'lucide-react';
 import { usePipeline } from '../context/PipelineContext';
 
 type ZoomMode = 'macro' | 'auto' | 'micro';
@@ -17,6 +17,7 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
   const [zoomMode, setZoomMode] = useState<ZoomMode>('auto');
   const { virtualTime } = usePipeline();
   const [isHovering, setIsHovering] = useState(false);
+  const [showTopControls, setShowTopControls] = useState(false);
   const [frozenRegions, setFrozenRegions] = useState(regions);
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -79,27 +80,46 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-       {/* Top Controls */}
-       <div className="flex justify-between items-center mb-4 pl-14 pr-4">
-          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Pipeline Execution View
-          </div>
-          <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
-            {(['macro', 'auto', 'micro'] as ZoomMode[]).map(mode => (
-              <button 
-                key={mode} 
-                onClick={() => setZoomMode(mode)}
-                className={`px-3 py-1 text-xs font-medium rounded-md capitalize transition-colors ${
-                  zoomMode === mode 
-                    ? 'bg-white text-blue-600 shadow-sm border border-slate-200/50' 
-                    : 'text-slate-500 hover:text-slate-700'
-                }`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
+       {/* Top Controls Toggle & Content */}
+       <div className="absolute top-0 right-4 z-50 -mt-10">
+         <button 
+           onClick={() => setShowTopControls(!showTopControls)}
+           className="bg-white border border-slate-200 shadow-sm rounded-b-md px-3 py-1 text-xs text-slate-500 hover:text-slate-700 flex items-center gap-1 transition-colors"
+         >
+           {showTopControls ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+           {showTopControls ? 'Hide Controls' : 'View Controls'}
+         </button>
        </div>
+
+       <AnimatePresence>
+         {showTopControls && (
+           <motion.div 
+             initial={{ height: 0, opacity: 0 }}
+             animate={{ height: 'auto', opacity: 1 }}
+             exit={{ height: 0, opacity: 0 }}
+             className="flex justify-between items-center mb-2 pl-14 pr-4 overflow-hidden"
+           >
+              <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+                Pipeline Execution View
+              </div>
+              <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+                {(['macro', 'auto', 'micro'] as ZoomMode[]).map(mode => (
+                  <button 
+                    key={mode} 
+                    onClick={() => setZoomMode(mode)}
+                    className={`px-2 py-0.5 text-[10px] font-medium rounded-md capitalize transition-colors ${
+                      zoomMode === mode 
+                        ? 'bg-white text-blue-600 shadow-sm border border-slate-200/50' 
+                        : 'text-slate-500 hover:text-slate-700'
+                    }`}
+                  >
+                    {mode}
+                  </button>
+                ))}
+              </div>
+           </motion.div>
+         )}
+       </AnimatePresence>
 
        {/* Master Scroll wrapper */}
        <div className="flex-1 w-full relative shadow-inner rounded-xl border border-slate-200/50 bg-white/50">
@@ -107,7 +127,7 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
             <div className="sticky top-0 z-40 bg-white/95 border-b border-slate-200 shadow-sm rounded-t-xl">
                <div 
                  ref={headerRef} 
-                 className="flex w-full overflow-x-auto scrollbar-hide pt-4 pb-4" 
+                 className="flex w-full overflow-x-auto scrollbar-hide pt-1 pb-1" 
                  onScroll={handleScroll}
                >
                  {/* Sticky top-left corner spacer */}
@@ -116,11 +136,11 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
                  {/* Headers flex container */}
                  <div className="flex-1 flex pl-1 pr-8 min-w-max">
                    {columns.map((col, idx) => (
-                      <div key={`${col.type}-${col.id}-${idx}`} className="flex-1 min-w-[80px] w-[80px] max-w-[80px] text-xs font-semibold text-slate-500 uppercase flex flex-col items-center text-center gap-1">
-                        <span className={col.type === 'phase' ? 'text-blue-600 font-bold' : ''}>
+                      <div key={`${col.type}-${col.id}-${idx}`} className="flex-1 min-w-[80px] w-[80px] max-w-[80px] text-xs font-semibold text-slate-500 uppercase flex flex-col items-center justify-center text-center gap-0.5">
+                        <span className={col.type === 'phase' ? 'text-blue-600 font-bold leading-none' : 'leading-none'}>
                           {col.shortName}
                         </span>
-                        <span className="px-2 truncate w-full text-[10px]" title={col.name}>{col.name}</span>
+                        <span className="px-1 truncate w-full text-[9px] leading-tight" title={col.name}>{col.name}</span>
                       </div>
                    ))}
                  </div>
@@ -133,7 +153,7 @@ export const ConcurrentLanes: React.FC<ConcurrentLanesProps> = ({ regions, onGpc
               className="w-full overflow-x-auto pb-6"
               onScroll={handleScroll}
             >
-              <div className="flex flex-col gap-8 relative pt-10 min-w-max">
+              <div className="flex flex-col gap-6 relative pt-4 min-w-max">
           {sortedRegions.map((region) => {
              const currentPhaseIndex = PIPELINE_PHASES.findIndex(p => p.id === region.currentPhaseId);
              const currentGpcIndex = ALL_GPCS.findIndex(g => g.id === region.currentGpcId);
