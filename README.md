@@ -12,6 +12,30 @@ The frontend has been designed with a decoupled architecture to ensure that the 
 
 The application uses a Context API provider (`src/context/PipelineContext.tsx`) to distribute global state down to pure display components (`<ConcurrentLanes />`, `<GlobalIssuesPanel />`, etc.).
 
+## Local Setup & Installation
+
+To run this dashboard locally on your machine, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kingd33/payroll-dashboard.git
+   cd payroll-dashboard
+   ```
+
+2. **Install dependencies:**
+   Ensure you have Node.js installed, then run:
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+   
+4. **View the application:**
+   Open your browser and navigate to `http://localhost:5173` (or the port specified in your terminal).
+
 ### Current State: The Mock Engine
 By default, the application runs on a mock telemetry engine called `useSimulation.ts`. This engine generates dummy localized regions, assigns them to random stages of the 21-GPC pipeline, and occasionally triggers artificial `[ERROR]` or `[AUTO-HEALING]` events to demonstrate the dashboard's capabilities. 
 
