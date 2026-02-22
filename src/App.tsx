@@ -84,7 +84,7 @@ function App() {
           <section className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200 flex flex-col relative shadow-xl flex-1">
             <header className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50 shrink-0">
                <div className="flex flex-col gap-1">
-                 <h2 className="text-xl font-medium text-slate-900 tracking-tight">Concurrent Lanes</h2>
+                 <h2 className="text-xl font-medium text-slate-900 tracking-tight">Control Concurrent Lanes</h2>
                  <p className="text-sm text-slate-500">21-Gate Global Payroll Controls Flow</p>
                </div>
              <div className="flex items-center gap-2 text-sm text-slate-600 bg-white p-1 rounded-lg border border-slate-200 shadow-sm">
