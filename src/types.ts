@@ -46,7 +46,7 @@ export const PIPELINE_PHASES: Phase[] = [
   { 
     id: 'PHASE0', 
     name: 'Data Standardization', 
-    shortName: 'Standardization',
+    shortName: 'Data Prep',
     gpcs: [{ id: 'PRE', name: 'Airflow/Python ETL', phaseId: 'PHASE0' }] 
   },
   { 
