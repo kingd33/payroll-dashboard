@@ -149,3 +149,6 @@ src/
 │   ├── GpcDetailsModal.tsx     # Slide-over modal showing details when you click a Region's active phase node
 │   └── DiffView.tsx            # Fullscreen modal displaying the "Before vs After" JSON payload difference
 ```
+
+## Contributing
+Since the `main` branch is protected, please cut a new feature branch (`git checkout -b feature/your-feature-name`), commit your changes, push to origin, and open a Pull Request for review before merging into `main`.
